@@ -2569,8 +2569,10 @@ void Writer::initializeLogger(const std::string& loggerId, bool lookup, bool nee
         ELPP->registeredLoggers()->get(std::string(base::consts::kDefaultLoggerId));
       }
     }
+    #ifndef ELPP_NOT_REGISTERED_DEBUG_MSG_DISABLED
     Writer(Level::Debug, m_file, m_line, m_func).construct(1, base::consts::kDefaultLoggerId)
         << "Logger [" << loggerId << "] is not registered yet!";
+    #endif // ELPP_NOT_REGISTERED_DEBUG_MSG_DISABLED
     m_proceed = false;
   } else {
     if (needLock) {
